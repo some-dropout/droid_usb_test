@@ -7,6 +7,7 @@ import android.content.Context;
 import android.hardware.usb.UsbDevice;
 import android.hardware.usb.UsbManager;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 
@@ -19,6 +20,15 @@ public class MainActivity extends Activity {
   private EditText mOut;
 
   private native int nativeTryOpen(String path);
+
+  @Override
+  public boolean onKeyDown(int key, KeyEvent ev)
+  {
+    if (key == KeyEvent.KEYCODE_BACK)
+      finish();
+
+    return super.onKeyDown(key, ev);
+  }
 
   @Override
   public void onCreate(Bundle bundle)
