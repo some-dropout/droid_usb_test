@@ -12,5 +12,6 @@ public class MainActivity extends Activity {
   public void onCreate(Bundle bundle)
   {
     super.onCreate(bundle);
+    setContentView(R.layout.main_activity);
   }
 }

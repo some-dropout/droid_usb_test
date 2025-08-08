@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+  <Button android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="Open device"
+          android:id="@+id/btn" />
+  <EditText android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/out"
+            android:gravity="top|left"
+            android:hint="Error log appears here (if any)"
+            android:inputType="none"
+            android:scrollbars="vertical" />
+</LinearLayout>
