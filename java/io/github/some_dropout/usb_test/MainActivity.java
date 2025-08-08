@@ -15,6 +15,7 @@ import android.hardware.usb.UsbManager;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -87,6 +88,7 @@ public class MainActivity extends Activity {
   public void onCreate(Bundle bundle)
   {
     ClipboardManager clipMan;
+    CheckBox chkBox;
 
     super.onCreate(bundle);
     setContentView(R.layout.main_activity);
@@ -95,6 +97,7 @@ public class MainActivity extends Activity {
     mUsbMan = (UsbManager)getSystemService(Context.USB_SERVICE);
     mOut = findViewById(R.id.out);
     clipMan = (ClipboardManager)getSystemService(Context.CLIPBOARD_SERVICE);
+    chkBox = findViewById(R.id.chkbox);
 
     mBtn.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -150,7 +153,7 @@ public class MainActivity extends Activity {
           return;
         }
 
-        if (!firstHasPerm)
+        if (!firstHasPerm || chkBox.isChecked())
         {
           requestPermission(firstDev);
           return;

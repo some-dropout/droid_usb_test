@@ -21,6 +21,10 @@
             android:text="Clear"
             android:id="@+id/wiper" />
   </LinearLayout>
+  <CheckBox android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Always requestPermission (simulate buggy app code)"
+            android:id="@+id/chkbox" />
   <EditText android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
