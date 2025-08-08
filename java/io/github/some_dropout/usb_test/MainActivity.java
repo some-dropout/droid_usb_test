@@ -8,6 +8,8 @@ public class MainActivity extends Activity {
     System.loadLibrary("app_jni");
   }
 
+  private native int nativeTryOpen(String path);
+
   @Override
   public void onCreate(Bundle bundle)
   {
