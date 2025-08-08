@@ -1,0 +1,11 @@
+/build.sh
+
+/*.zip
+/*.apk
+R.java
+*.class
+/*.dex
+/*.idsig
+/jni/*.d
+/jni/*.o
+/lib/*/libapp_jni.so

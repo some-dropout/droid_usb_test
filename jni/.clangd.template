@@ -1,0 +1,7 @@
+CompileFlags:
+  Add:
+    - --target=aarch64
+    - -nostdinc
+    - -I/opt/android-ndk/toolchains/llvm/prebuilt/linux-x86_64/lib/clang/19/include
+    - -I/opt/android-ndk/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include
+    - -I/opt/android-ndk/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include/aarch64-linux-android
