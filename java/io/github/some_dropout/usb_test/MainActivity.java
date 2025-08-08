@@ -149,10 +149,12 @@ public class MainActivity extends Activity {
         {
           String path;
           UsbDevice dev;
+          String prodName;
           Boolean hasPerm;
 
           path = ent.getKey();
           dev = ent.getValue();
+          prodName = dev.getProductName();
           hasPerm = Boolean.valueOf(mUsbMan.hasPermission(dev));
 
           if (firstPath == null)
@@ -162,7 +164,7 @@ public class MainActivity extends Activity {
           if (firstHasPerm == null)
             firstHasPerm = hasPerm;
 
-          mOut.append(String.format("%s - %s (%s) ", dev.getProductName(), path, hasPerm.booleanValue() ? "Granted" : "Not granted"));
+          mOut.append(String.format("%s - %s (%s) ", prodName == null ? "Unknown" : prodName, path, hasPerm.booleanValue() ? "Granted" : "Not granted"));
         }
         mOut.append("\n");
 
