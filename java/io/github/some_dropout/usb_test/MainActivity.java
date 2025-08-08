@@ -3,6 +3,8 @@ package io.github.some_dropout.usb_test;
 import java.util.HashMap;
 
 import android.app.Activity;
+import android.content.ClipboardManager;
+import android.content.ClipData;
 import android.content.Context;
 import android.hardware.usb.UsbDevice;
 import android.hardware.usb.UsbManager;
@@ -33,11 +35,14 @@ public class MainActivity extends Activity {
   @Override
   public void onCreate(Bundle bundle)
   {
+    ClipboardManager clipMan;
+
     super.onCreate(bundle);
     setContentView(R.layout.main_activity);
 
     mUsbMan = (UsbManager)getSystemService(Context.USB_SERVICE);
     mOut = findViewById(R.id.out);
+    clipMan = (ClipboardManager)getSystemService(Context.CLIPBOARD_SERVICE);
 
     findViewById(R.id.btn).setOnClickListener(new View.OnClickListener() {
       @Override
@@ -88,6 +93,17 @@ public class MainActivity extends Activity {
           mOut.append("More than one device connected, abort.\n");
           return;
         }
+      }
+    });
+
+    findViewById(R.id.copie).setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v)
+      {
+        ClipData data;
+
+        data = ClipData.newPlainText("", mOut.getText());
+        clipMan.setPrimaryClip(data);
       }
     });
 
