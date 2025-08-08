@@ -2,7 +2,7 @@ ANDROID_PLATFORM := 35
 #APP_VER := 0.1.0
 #APP_VERCODE := 1
 
-AAPTLDFLAGS += --target-sdk-version 35
+AAPTLDFLAGS += --target-sdk-version 34
 #AAPTLDFLAGS += --version-name $(APP_VER)
 #AAPTLDFLAGS += --version-code $(APP_VERCODE)
 BYTECODE_VER := 17
