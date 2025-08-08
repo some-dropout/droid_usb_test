@@ -173,6 +173,8 @@ public class MainActivity extends Activity {
   @Override
   public void onDestroy()
   {
+    mUsbMan = null;
+    mOut = null;
     unregisterReceiver(mReceiver);
     mReceiver = null;
 
