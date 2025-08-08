@@ -1,4 +1,4 @@
-package com.example.app;
+package io.github.some_dropout.usb_test;
 
 import android.app.Activity;
 import android.os.Bundle;
