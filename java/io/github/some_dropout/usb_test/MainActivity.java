@@ -15,6 +15,7 @@ import android.hardware.usb.UsbManager;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 public class MainActivity extends Activity {
@@ -24,6 +25,7 @@ public class MainActivity extends Activity {
 
   private static final String ACTION_USB_PERM = "io.github.some_dropout.usb_test.USB_PERMISSION";
 
+  private Button mBtn;
   private UsbManager mUsbMan;
   private EditText mOut;
   private BroadcastReceiver mReceiver;
@@ -51,7 +53,10 @@ public class MainActivity extends Activity {
           granted = intent.getBooleanExtra(UsbManager.EXTRA_PERMISSION_GRANTED, false);
           mOut.append(String.format("User %s permission request.\n", granted ? "granted" : "rejected"));
           if (!granted)
+          {
+            mBtn.setEnabled(true);
             return;
+          }
         }
       }
     };
@@ -86,11 +91,12 @@ public class MainActivity extends Activity {
     super.onCreate(bundle);
     setContentView(R.layout.main_activity);
 
+    mBtn = findViewById(R.id.btn);
     mUsbMan = (UsbManager)getSystemService(Context.USB_SERVICE);
     mOut = findViewById(R.id.out);
     clipMan = (ClipboardManager)getSystemService(Context.CLIPBOARD_SERVICE);
 
-    findViewById(R.id.btn).setOnClickListener(new View.OnClickListener() {
+    mBtn.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v)
       {
@@ -100,12 +106,15 @@ public class MainActivity extends Activity {
         UsbDevice firstDev;
         Boolean firstHasPerm;
 
+        mBtn.setEnabled(false);
+
         usbs = mUsbMan.getDeviceList();
         count = usbs.size();
 
         if (count == 0)
         {
           mOut.append("No connected device.\n");
+          mBtn.setEnabled(true);
           return;
         }
 
@@ -137,6 +146,7 @@ public class MainActivity extends Activity {
         if (count > 1)
         {
           mOut.append("More than one device connected, abort.\n");
+          mBtn.setEnabled(true);
           return;
         }
 
@@ -173,6 +183,7 @@ public class MainActivity extends Activity {
   @Override
   public void onDestroy()
   {
+    mBtn = null;
     mUsbMan = null;
     mOut = null;
     unregisterReceiver(mReceiver);
