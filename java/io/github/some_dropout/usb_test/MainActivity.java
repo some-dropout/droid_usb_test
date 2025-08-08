@@ -33,6 +33,18 @@ public class MainActivity extends Activity {
 
   private native int nativeTryOpen(String path);
 
+  private boolean isReallyGranted(UsbDevice dev)
+  {
+    HashMap<String, UsbDevice> usbs;
+    String name;
+    UsbDevice dev2;
+
+    usbs = mUsbMan.getDeviceList();
+    name = dev.getDeviceName();
+    dev2 = usbs.get(name);
+    return mUsbMan.hasPermission(dev2);
+  }
+
   private void initReceiver()
   {
     IntentFilter filter;
@@ -63,6 +75,9 @@ public class MainActivity extends Activity {
           dev = intent.getParcelableExtra(UsbManager.EXTRA_DEVICE, UsbDevice.class);
           if (!mUsbMan.hasPermission(dev))
             mOut.append("W: Broadcast result says granted, but hasPermission() returned false!\n");
+
+          if (!isReallyGranted(dev))
+            mOut.append("W: Device object in broadcast result might be a false positive!\n");
         }
       }
     };
