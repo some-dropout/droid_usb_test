@@ -90,5 +90,13 @@ public class MainActivity extends Activity {
         }
       }
     });
+
+    findViewById(R.id.wiper).setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v)
+      {
+        mOut.setText("");
+      }
+    });
   }
 }
