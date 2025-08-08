@@ -45,6 +45,7 @@ public class MainActivity extends Activity {
       public void onReceive(Context ctx, Intent intent)
       {
         String action;
+        UsbDevice dev;
 
         action = intent.getAction();
         if (action.equals(ACTION_USB_PERM))
@@ -58,6 +59,10 @@ public class MainActivity extends Activity {
             mBtn.setEnabled(true);
             return;
           }
+
+          dev = intent.getParcelableExtra(UsbManager.EXTRA_DEVICE, UsbDevice.class);
+          if (!mUsbMan.hasPermission(dev))
+            mOut.append("W: Broadcast result says granted, but hasPermission() returned false!\n");
         }
       }
     };
