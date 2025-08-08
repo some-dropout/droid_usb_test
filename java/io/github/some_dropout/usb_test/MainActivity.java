@@ -147,7 +147,7 @@ public class MainActivity extends Activity {
           if (firstHasPerm == null)
             firstHasPerm = hasPerm;
 
-          mOut.append(String.format("%s (%s) ", path, hasPerm.booleanValue() ? "Granted" : "Not granted"));
+          mOut.append(String.format("%s - %s (%s) ", dev.getProductName(), path, hasPerm.booleanValue() ? "Granted" : "Not granted"));
         }
         mOut.append("\n");
 
